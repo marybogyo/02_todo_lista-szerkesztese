@@ -11,13 +11,15 @@ class Megjelenit {
 
         this.tablazatbaIr();
 
+       
     }
     tablazatbaIr() {
-        for (let index = 0; index < this.#list.length; index++) {
-            const elem = this.#list[index];
+        this.#list.forEach((elem, index)=>{
+        /*for (let index = 0; index < this.#list.length; index++) {
+            const elem = this.#list[index];*/
 
-            new MegjelenitSor(elem, this.tablaElem);
-        }
+            new MegjelenitSor(elem, this.tablaElem, index);})
+        
     }
 }
 export default Megjelenit;
