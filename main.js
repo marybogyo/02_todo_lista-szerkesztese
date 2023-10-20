@@ -15,7 +15,10 @@ $(function () {
          objPeldany.setHatterszin();
          
          TODOLIST2[objPeldany.index].kesz=true;
-         console.log(TODOLIST2);
+         console.log(TODOLIST2[objPeldany.index]);
+         console.log($(".megse")[objPeldany.index]);
+         $(".megse").eq (objPeldany.index).attr("hidden", false);
+         $(".kesz").eq(objPeldany.index).attr("hidden", true);
      })
      $(window).on("torol", (event)=>{
          let objPeldany= event.detail
@@ -26,6 +29,14 @@ $(function () {
      
          /*console.log(objPeldany);
          console.log("Törlés esemeny")*/
+     })
+
+     $(window).on("megse", (event)=>{
+        let objPeldany= event.detail
+        objPeldany.removeHatterszin();
+        TODOLIST2[objPeldany.index].kesz=false;
+        $(".megse").eq(objPeldany.index).attr("hidden", true);
+        $(".kesz").eq(objPeldany.index).attr("hidden", false);
      })
 
 });

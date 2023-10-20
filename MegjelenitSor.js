@@ -1,14 +1,10 @@
 class MegjelenitSor {
     #adat = {};
  
-    constructor(adat, szuloElem, index) {
-        
+    constructor(adat, szuloElem, index) {        
         this.index=index;
-
-        this.#adat = adat;
-   
+        this.#adat = adat;   
         this.tablaElem = szuloElem;
-
         this.#sor();
         /** eseménykezelők a kész és a törlés gombokhoz */
         this.sorElem = this.tablaElem.children("tr:last-child");
@@ -33,6 +29,10 @@ class MegjelenitSor {
             //console.log(this)
             this.#esemenyTrigger("torol")
         });
+        this.megseElem.on("click", () => {
+            //console.log(this)
+            this.#esemenyTrigger("megse")
+        });
         /**callback függvény */
         //this.torolElem.on("click", (event) => {
         //    console.log(event.detail);
@@ -44,6 +44,10 @@ class MegjelenitSor {
         this.sorElem.css("background-color", "green");
     }
 
+    removeHatterszin(){
+        this.sorElem.css("background-color", "transparent");
+    }
+ 
     #sor() {
         let txt = "";
 
@@ -57,7 +61,7 @@ class MegjelenitSor {
             
           }
         
-        txt += `<td><span class="kesz">✔️</span> <span class="kesz">"mégse"</span><span class="torol">🗑</span></td>`;
+        txt += `<td><span class="kesz">✔️</span><span class="megse" hidden = true>❌</span><span class="torol">🗑</span></td>`; //*windows +pont
         txt += "</tr>";
 
         this.tablaElem.append(txt);
@@ -71,3 +75,4 @@ class MegjelenitSor {
 }
 
 export default MegjelenitSor;
+
